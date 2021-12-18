@@ -5,6 +5,7 @@ const ReportScheme = new Utils.Schema({
   author: { type: String, required: true },
   description: { type: String, required: true },
   active: { type: Boolean, default: true },
+  recived: { type: Boolean, default: true },
   created: { type: Date, default: Date.now },
   closedAt: { type: Date, required: false },
   underInvestigation: { type: Boolean, default: false },
