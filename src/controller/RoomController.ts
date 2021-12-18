@@ -72,4 +72,3 @@ class RoomController {
 }
 
 module.exports = new RoomController();
-export default RoomController;
