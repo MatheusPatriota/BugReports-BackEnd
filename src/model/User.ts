@@ -1,8 +1,6 @@
-const mongo = require('../config/database');
+import * as Utils from '../utils/utils';
 
-const Schema = mongo.Schema;
-
-const UserScheme = new Schema({
+const UserScheme = new Utils.Schema({
     name: {type: String, required: true},
     admin: {type: Boolean, required: true},
     avatar: {type: String, default: 'https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png'},
