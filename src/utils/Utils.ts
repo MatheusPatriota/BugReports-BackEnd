@@ -1,4 +1,4 @@
-export const mongo = require('../config/database');
+export const mongoose = require('../config/database');
 
-export const Schema = mongo.Schema;
+export const Schema = mongoose.Schema;
 
