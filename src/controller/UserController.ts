@@ -1,8 +1,8 @@
-const UserModel = require("../model/User");
+import * as Utils from '../utils/Utils'
 
 class UserController {
   async createUser(request, response) {
-    const room = new UserModel(request.body);
+    const room = new Utils.UserModel(request.body);
     await room
       .save()
       .then((res) => {
@@ -18,7 +18,7 @@ class UserController {
   }
 
   async updateUser(request, response) {
-    await UserModel.findByIdAndUpdate({ _id: request.params.id }, request.body)
+    await Utils.UserModel.findByIdAndUpdate({ _id: request.params.id }, request.body)
       .then((res) => {
         return response
           .status(200)
@@ -32,7 +32,7 @@ class UserController {
   }
 
   async getAllUsers(request, response) {
-    await UserModel.find()
+    await Utils.UserModel.find()
       .sort("created")
       .then((res) => {
         return response
@@ -46,7 +46,7 @@ class UserController {
       });
   }
   async getUser(request, response) {
-    await UserModel.findById({ _id: request.params.id })
+    await Utils.UserModel.findById({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)
@@ -59,7 +59,7 @@ class UserController {
       });
   }
   async deleteUser(request, response) {
-    await UserModel.deleteOne({ _id: request.params.id })
+    await Utils.UserModel.deleteOne({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)

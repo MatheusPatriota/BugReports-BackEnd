@@ -3,7 +3,7 @@ const router = express.Router();
 const roomController = require("../controller/RoomController");
 const userController = require("../controller/UserController");
 const reportController = require("../controller/ReportController");
-
+const UserValidation = require("../middlewares/UserValidation");
 router.get("/", (request, response) => {
   response.send("bem vindo a nossa API");
 });
@@ -17,8 +17,8 @@ router.delete("/room/:id", roomController.deleteRoom);
 router.get("/rooms", roomController.getAllRooms);
 
 //user routes
-router.post("/user", userController.createUser);
-router.put("/user/:id", userController.updateUser);
+router.post("/user", UserValidation, userController.createUser);
+router.put("/user/:id", UserValidation, userController.updateUser);
 router.get("/user/:id", userController.getUser);
 router.delete("/user/:id", userController.deleteUser);
 

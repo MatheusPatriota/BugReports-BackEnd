@@ -1,8 +1,8 @@
-const RoomModel = require("../model/Room");
+import * as Utils from '../utils/Utils'
 
 class RoomController {
   async createRoom(request, response) {
-    const room = new RoomModel(request.body);
+    const room = new Utils.RoomModel(request.body);
     await room
       .save()
       .then((res) => {
@@ -16,7 +16,7 @@ class RoomController {
   }
 
   async updateRoom(request, response) {
-    await RoomModel.findByIdAndUpdate({ _id: request.params.id }, request.body)
+    await Utils.RoomModel.findByIdAndUpdate({ _id: request.params.id }, request.body)
       .then((res) => {
         return response
           .status(200)
@@ -30,7 +30,7 @@ class RoomController {
   }
 
   async getAllRooms(request, response) {
-    await RoomModel.find()
+    await Utils.RoomModel.find()
       .sort("created")
       .then((res) => {
         return response
@@ -44,7 +44,7 @@ class RoomController {
       });
   }
   async getRoom(request, response) {
-    await RoomModel.findById({ _id: request.params.id })
+    await Utils.RoomModel.findById({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)
@@ -57,7 +57,7 @@ class RoomController {
       });
   }
   async deleteRoom(request, response) {
-    await RoomModel.deleteOne({ _id: request.params.id })
+    await Utils.RoomModel.deleteOne({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)

@@ -1,8 +1,8 @@
-const ReportModel = require("../model/Report");
+import * as Utils from '../utils/Utils'
 
 class ReportController {
   async createReport(request, response) {
-    const room = new ReportModel(request.body);
+    const room = new Utils.ReportModel(request.body);
     await room
       .save()
       .then((res) => {
@@ -18,7 +18,7 @@ class ReportController {
   }
 
   async updateReport(request, response) {
-    await ReportModel.findByIdAndUpdate(
+    await Utils.ReportModel.findByIdAndUpdate(
       { _id: request.params.id },
       request.body
     )
@@ -35,7 +35,7 @@ class ReportController {
   }
 
   async getAllReports(request, response) {
-    await ReportModel.find()
+    await Utils.ReportModel.find()
       .sort("created")
       .then((res) => {
         return response
@@ -49,7 +49,7 @@ class ReportController {
       });
   }
   async getReport(request, response) {
-    await ReportModel.findById({ _id: request.params.id })
+    await Utils.ReportModel.findById({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)
@@ -62,7 +62,7 @@ class ReportController {
       });
   }
   async deleteReport(request, response) {
-    await ReportModel.deleteOne({ _id: request.params.id })
+    await Utils.ReportModel.deleteOne({ _id: request.params.id })
       .then((res) => {
         return response
           .status(200)
