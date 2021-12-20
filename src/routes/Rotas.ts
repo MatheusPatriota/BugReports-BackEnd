@@ -4,13 +4,15 @@ const roomController = require("../controller/RoomController");
 const userController = require("../controller/UserController");
 const reportController = require("../controller/ReportController");
 const UserValidation = require("../middlewares/UserValidation");
+const RoomValidation = require("../middlewares/RoomValidation");
+
 router.get("/", (request, response) => {
   response.send("bem vindo a nossa API");
 });
 
 // rooms routes
-router.post("/room", roomController.createRoom);
-router.put("/room/:id", roomController.updateRoom);
+router.post("/room", RoomValidation,roomController.createRoom);
+router.put("/room/:id", RoomValidation,roomController.updateRoom);
 router.get("/room/:id", roomController.getRoom);
 router.delete("/room/:id", roomController.deleteRoom);
 
