@@ -9,17 +9,6 @@ const RoomValidation = async (req, res, next) => {
     return res.status(400).json({ error: "Email é obrigatório" });
   else if (!password)
     return res.status(400).json({ error: "Password é obrigatório" });
-  else {
-    exists = await Utils.UserModel.findOne({
-      roomName: { $eq: roomName },
-    });
-  }
-
-  if (exists) {
-    return res.status(400).json({
-      error: "Já existe um sala de projeto cadastrado com esse nome",
-    });
-  }
   next();
 };
 
