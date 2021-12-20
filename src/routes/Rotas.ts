@@ -13,7 +13,7 @@ router.get("/", (request, response) => {
 
 // rooms routes
 router.post("/room", RoomValidation, roomController.createRoom);
-router.put("/room/:id", RoomValidation, roomController.updateRoom);
+router.put("/room/:id", roomController.updateRoom);
 router.get("/room/:id", roomController.getRoom);
 router.delete("/room/:id", roomController.deleteRoom);
 
@@ -21,7 +21,7 @@ router.get("/rooms", roomController.getAllRooms);
 
 //user routes
 router.post("/user", UserValidation, userController.createUser);
-router.put("/user/:id", UserValidation, userController.updateUser);
+router.put("/user/:id", userController.updateUser);
 router.get("/user/:id", userController.getUser);
 router.delete("/user/:id", userController.deleteUser);
 
