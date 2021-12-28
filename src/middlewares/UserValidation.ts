@@ -7,7 +7,7 @@ const ValidacaoTarefa = async (req, res, next) => {
   if (!name) return res.status(400).json({ error: "Nome é obrigatório" });
   else if (!email)
     return res.status(400).json({ error: "Email é obrigatório" });
-  else if (!admin)
+  else if (admin == null)
     return res.status(400).json({ error: "Status Admin é obrigatório" });
   else if (!password)
     return res.status(400).json({ error: "Password é obrigatório" });
