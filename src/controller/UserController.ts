@@ -1,4 +1,4 @@
-import * as Utils from '../utils/Utils'
+import * as Utils from "../utils/Utils";
 
 class UserController {
   async createUser(request, response) {
@@ -18,7 +18,10 @@ class UserController {
   }
 
   async updateUser(request, response) {
-    await Utils.UserModel.findByIdAndUpdate({ _id: request.params.id }, request.body)
+    await Utils.UserModel.findByIdAndUpdate(
+      { _id: request.params.id },
+      request.body
+    )
       .then((res) => {
         return response
           .status(200)
@@ -58,6 +61,26 @@ class UserController {
           .json({ msg: "Error ao exibir Usuário", error });
       });
   }
+
+  async getUserByEmail(request, response) {
+    await Utils.UserModel.findOne({ email: request.params.email })
+      .then((res) => {
+        if (res == null) {
+          return response
+            .status(404)
+            .json("Usuário não encontrado na nossa base de dados");
+        }
+        return response
+          .status(200)
+          .json({ msg: "Usuários exibida com sucesso!", res });
+      })
+      .catch((error) => {
+        return response
+          .status(500)
+          .json({ msg: "Error ao exibir Usuário", error });
+      });
+  }
+
   async deleteUser(request, response) {
     await Utils.UserModel.deleteOne({ _id: request.params.id })
       .then((res) => {

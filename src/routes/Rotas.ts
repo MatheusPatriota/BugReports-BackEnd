@@ -23,6 +23,7 @@ router.get("/rooms", roomController.getAllRooms);
 router.post("/user", UserValidation, userController.createUser);
 router.put("/user/:id", userController.updateUser);
 router.get("/user/:id", userController.getUser);
+router.get("/user/email/:email", userController.getUserByEmail);
 router.delete("/user/:id", userController.deleteUser);
 
 router.get("/users", userController.getAllUsers);
@@ -30,10 +31,11 @@ router.get("/users", userController.getAllUsers);
 //report routes
 
 router.post("/report", ReportValidation, reportController.createReport);
-router.put("/report/:id", ReportValidation, reportController.updateReport);
+router.put("/report/:id", reportController.updateReport);
 router.get("/report/:id", reportController.getReport);
 router.delete("/report/:id", reportController.deleteReport);
 
 router.get("/reports", reportController.getAllReports);
+router.get("/reports/:id", reportController.getAllReportsByRoomId);
 
 module.exports = router;

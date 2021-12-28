@@ -1,4 +1,4 @@
-import * as Utils from '../utils/Utils'
+import * as Utils from "../utils/Utils";
 
 class ReportController {
   async createReport(request, response) {
@@ -48,6 +48,27 @@ class ReportController {
           .json({ msg: "Error ao exibir Reports", error });
       });
   }
+
+  async getAllReportsByRoomId(request, response) {
+    await Utils.ReportModel.find({roomId: request.params.id})
+      .sort("created")
+      .then((res) => {
+        if (res == null) {
+          return response
+            .status(404)
+            .json("Sala não encontrada na nossa base de dados");
+        }
+        return response
+          .status(200)
+          .json({ msg: "Reports exibidos com sucesso!", res });
+      })
+      .catch((error) => {
+        return response
+          .status(500)
+          .json({ msg: "Error ao exibir Reports", error });
+      });
+  }
+
   async getReport(request, response) {
     await Utils.ReportModel.findById({ _id: request.params.id })
       .then((res) => {
