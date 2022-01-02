@@ -38,4 +38,6 @@ router.delete("/report/:id", reportController.deleteReport);
 router.get("/reports", reportController.getAllReports);
 router.get("/reports/:id", reportController.getAllReportsByRoomId);
 
+router.get("/reports/:id/filter/:status", reportController.getReportsByIdWithFilter)
+
 module.exports = router;
